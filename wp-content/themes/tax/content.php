@@ -115,30 +115,65 @@
     </section>
     <section class="results">
         <div class="wrap">
-            <div class="results-title">РЕЗУЛЬТАТЫ В ЦИФРАХ</div>
-            <div class="result-items">
-                <div class="item">
-                    <div class="number">20</div>
-                    <p>Более 20 лет успешного опытав сфере регистрации и обслуживания компаний </p>
-                    <div class="number">01</div>
-                    <p>Офис в мировом финансовом центре в Лондоне, компании в Лондоне за 1 час
-                    </p>
-                </div>
-                <div class="item">
-                    <div class="number">72</div>
-                    <p>Возможность регистрации
-                        офшорных компаний за 72 часа
-                    </p>
-                    <div class="number">30</div>
-                    <p>Возможность регистрации компании
-                        в более 30 различных странах мира
-                    </p>
-                </div>
-                <div class="item bank">
-                    <img src="<?php bloginfo('template_url') ?>/img/bank.png" alt="">
-                    <p>Возможность открытия счета в самых крупных мировых банках</p>
-                </div>
-            </div>
+            <div class="results-title"><?php
+                $args_result_in_numbers = array(
+                    'post_type' => 'result_in_numbers', //slag
+                    'posts_per_page' => 10,
+                );
+                $result_in_numbers = new WP_Query($args_result_in_numbers);
+
+                //loop
+                $i = 0;
+                $ix = 0;
+                $description = '';
+                if ($result_in_numbers->have_posts()) :
+                    $result = object_to_array($result_in_numbers);
+                    foreach ($result['posts'] as $item) {
+                        //display title
+                        if ($item['post_content'] == 'Заголовок') {
+                            if ($i == 0) {
+                                echo $item['post_title'];
+                                echo "</div>";
+                                echo "<div class='result-items'>";
+                            }
+                            $i++;
+                        }
+                        if ($item['post_title'] == 'Боковой_текст') {
+                            if (($i > 0) && ($ix == 0)) {
+                                $description = "<div class='item bank'>";
+                                $description .= "<img src='";
+                                $description .= get_bloginfo('template_url') . "/img/bank.png' alt=''>";
+                                $description .= "<p>";
+                                $description .= $item['post_content'];
+                                $description .= "</p></div>";
+                            }
+                            $ix++;
+                        }
+                    }
+                endif;
+
+                $check_div = 0;
+                if ($result_in_numbers->have_posts()) :
+                    while ($result_in_numbers->have_posts()) :
+                        $result_in_numbers->the_post();
+                        //display benefits
+                        if ((get_the_content() != 'Заголовок') && (get_the_title() != 'Боковой_текст')) {
+                            if($check_div%2 == 0)
+                            echo "<div class='item'>";
+                            echo "<div class='number'>";
+                            the_title();
+                            echo "</div>";
+                            echo "<p>";
+                            the_content();
+                            echo "</p>";
+                            if($check_div%2 == 1)
+                            echo "</div>";
+                            $check_div++;
+                        }
+                    endwhile;
+                endif;
+                echo $description;
+                wp_reset_postdata(); // return global variables to state of main query ?>
         </div>
     </section>
     <section class="our-work">
