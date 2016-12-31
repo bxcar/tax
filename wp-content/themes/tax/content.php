@@ -115,7 +115,8 @@
     </section>
     <section class="results">
         <div class="wrap">
-            <div class="results-title"><?php
+            <div class="results-title">
+                <?php
                 $args_result_in_numbers = array(
                     'post_type' => 'result_in_numbers', //slag
                     'posts_per_page' => 10,
@@ -178,49 +179,54 @@
     </section>
     <section class="our-work">
         <div class="wrap">
-            <div class="title">КАК МЫ РАБОТАЕМ</div>
-            <div class="work-item">
-                <div class="item">
-                    <div><img src="<?php bloginfo('template_url') ?>/img/h-work-1.png" alt=""></div>
-                    <div class="shema">
-                        <div class="circle"></div>
-                        <div class="rectangle"></div>
-                    </div>
-                    <p>Определяем цели и задачи<br> для регистрации компании</p>
-                </div>
-                <div class="item">
-                    <div><img src="<?php bloginfo('template_url') ?>/img/h-work-2.png" alt=""></div>
-                    <div class="shema">
-                        <div class="circle"></div>
-                        <div class="rectangle"></div>
-                    </div>
-                    <p>Выбираем название и<br> юрисдикцию компании</p>
-                </div>
-                <div class="item">
-                    <div><img src="<?php bloginfo('template_url') ?>/img/h-work-3.png" alt=""></div>
-                    <div class="shema">
-                        <div class="circle"></div>
-                        <div class="rectangle"></div>
-                    </div>
-                    <p>Консультируем в отношении<br> ведения бухгалтерии и<br> налогового планирования</p>
-                </div>
-                <div class="item">
-                    <div><img src="<?php bloginfo('template_url') ?>/img/h-work-4.png" alt=""></div>
-                    <div class="shema">
-                        <div class="circle"></div>
-                        <div class="rectangle"></div>
-                    </div>
-                    <p>Выбираем банк для<br>
-                        открытия счета</p>
-                </div>
-                <div class="item">
-                    <div><img src="<?php bloginfo('template_url') ?>/img/h-work-5.png" alt=""></div>
-                    <div class="shema">
-                        <div class="circle"></div>
-                        <div class="rectangle"></div>
-                    </div>
-                    <p>Консультируем в отношении<br> дальнейшего <br>администрирования компании</p>
-                </div>
+            <div class="title">
+                <?php
+                $args_how_we_works = array(
+                    'post_type' => 'how_we_works', //slag
+                    'posts_per_page' => 10,
+                );
+                $how_we_works = new WP_Query($args_how_we_works);
+
+                //loop
+                $i = 0;
+                $description = '';
+                if ($how_we_works->have_posts()) :
+                    $result = object_to_array($how_we_works);
+                    foreach ($result['posts'] as $item) {
+                        //display title
+                        if ($item['post_content'] == 'Заголовок') {
+                            if ($i == 0) {
+                                echo $item['post_title'];
+                                echo "</div>";
+                                echo "<div class='work-item'>";
+                            }
+                            $i++;
+                        }
+                    }
+                endif;
+
+                if ($how_we_works->have_posts()) :
+                    while ($how_we_works->have_posts()) :
+                        $how_we_works->the_post();
+                        //display benefits
+                        if ((get_the_content() != 'Заголовок')) {
+                            echo "<div class='item'>";
+                            echo "<div>";
+                            the_post_thumbnail();
+                            echo "</div>";
+
+                            echo "<div class='shema'>";
+                            echo "<div class='circle'></div>";
+                            echo "<div class='rectangle'></div>";
+                            echo "</div>";
+                            echo "<p>";
+                            the_title();
+                            echo "</p>";
+                            echo "</div>";
+                        }
+                    endwhile;
+                endif;
+                wp_reset_postdata(); // return global variables to state of main query ?>
             </div>
         </div>
     </section>
