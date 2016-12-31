@@ -83,20 +83,20 @@
             //loop
             $i = 0;
             if ($special_offers->have_posts()) :
-                while ($special_offers->have_posts()) :
-                    $result = object_to_array($special_offers);
-                    foreach ($result['posts'] as $item) {
-                        //display title
-                        if ($item['post_content'] == 'Заголовок') {
-                            if ($i == 0) {
-                                echo $item['post_title'];
-                                echo "</div>";
-                                echo "<div class='wrap'>";
-                                echo "<div class='owl-carousel carousel-1'>";
-                            }
-                            $i++;
+                $result = object_to_array($special_offers);
+                foreach ($result['posts'] as $item) {
+                    //display title
+                    if ($item['post_content'] == 'Заголовок') {
+                        if ($i == 0) {
+                            echo $item['post_title'];
+                            echo "</div>";
+                            echo "<div class='wrap'>";
+                            echo "<div class='owl-carousel carousel-1'>";
                         }
+                        $i++;
                     }
+                }
+                while ($special_offers->have_posts()) :
                     $special_offers->the_post();
                     //display benefits
                     if (!get_the_content()) {
@@ -159,23 +159,23 @@
                         $result_in_numbers->the_post();
                         //display benefits
                         if ((get_the_content() != 'Заголовок') && (get_the_title() != 'Боковой_текст')) {
-                            if($check_div%2 == 0)
-                            echo "<div class='item'>";
+                            if ($check_div % 2 == 0)
+                                echo "<div class='item'>";
                             echo "<div class='number'>";
                             the_title();
                             echo "</div>";
                             echo "<p>";
                             the_content();
                             echo "</p>";
-                            if($check_div%2 == 1)
-                            echo "</div>";
+                            if ($check_div % 2 == 1)
+                                echo "</div>";
                             $check_div++;
                         }
                     endwhile;
                 endif;
                 echo $description;
                 wp_reset_postdata(); // return global variables to state of main query ?>
-        </div>
+            </div>
     </section>
     <section class="our-work">
         <div class="wrap">
@@ -295,19 +295,19 @@
                 //loop
                 $i = 0;
                 if ($_helpful_information->have_posts()) :
-                    while ($_helpful_information->have_posts()) :
-                        $result = object_to_array($_helpful_information);
-                        foreach ($result['posts'] as $item) {
-                            //display title
-                            if ($item['post_content'] == 'Заголовок') {
-                                if ($i == 0) {
-                                    echo $item['post_title'];
-                                    echo "</div>";
-                                    echo "<div class='info-item'>";
-                                }
-                                $i++;
+                    $result = object_to_array($_helpful_information);
+                    foreach ($result['posts'] as $item) {
+                        //display title
+                        if ($item['post_content'] == 'Заголовок') {
+                            if ($i == 0) {
+                                echo $item['post_title'];
+                                echo "</div>";
+                                echo "<div class='info-item'>";
                             }
+                            $i++;
                         }
+                    }
+                    while ($_helpful_information->have_posts()) :
                         $_helpful_information->the_post();
                         //display benefits
                         if (!get_the_content()) {
@@ -338,67 +338,48 @@
         </div>
     </section>
     <section class="news-front">
-        <div class="title">НОВОСТИ</div>
-        <div class="wrap">
-            <div class="owl-carousel carousel-2">
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">29 июня 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">27 января 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">29 июня 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">27 января 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">29 июня 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">27 января 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">29 июня 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-wrap">
-                        <div class="date">27 января 2016</div>
-                        <p>Британские Виргинские о-ва: новые требований для Регулируемых компаний и Взаимных фондов</p>
-                        <a href="#"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="title">
+            <?php
+            $args_news_fields = array(
+                'post_type' => 'news_fields', //slag
+                'posts_per_page' => 20,
+            );
+            $news_fields = new WP_Query($args_news_fields);
+
+            //loop
+            $i = 0;
+            if ($news_fields->have_posts()) :
+                $result = object_to_array($news_fields);
+                foreach ($result['posts'] as $item) {
+                    //display title
+                    if ($item['post_content'] == 'Заголовок') {
+                        if ($i == 0) {
+                            echo $item['post_title'];
+                            echo "</div>";
+                            echo "<div class='wrap'>";
+                            echo "<div class='owl-carousel carousel-2'>";
+                        }
+                        $i++;
+                    }
+                }
+                while ($news_fields->have_posts()) :
+                    $news_fields->the_post();
+                    //display benefits
+                    if (get_the_title() != 'Новости') {
+                        echo "<div class='item'>";
+                        echo "<div class='item-wrap'>";
+                        echo "<div class='date'>";
+                        echo get_the_date();
+                        echo "</div>";
+                        echo "<p>";
+                        the_content();
+                        echo "</p>";
+                        echo "<a href='#'></a>";
+                        echo "</div></div>";
+                    }
+                endwhile;
+            endif;
+            wp_reset_postdata(); // return global variables to state of main query ?>
     </section>
 </main>
 <!-- End content -->
