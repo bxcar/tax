@@ -109,11 +109,6 @@
 </head>
 
 <body>
-
-<?php home_url() ?>
-
-<?php //bloginfo('template_url') ?>
-
 <!-- Custom HTML -->
 <!-- Header -->
 <header>
@@ -121,17 +116,31 @@
 		<div class="left-side">
 			<a class="logo" href="<?php echo home_url() ?>"><img src="<?php bloginfo('template_url') ?>/img/logo.png" alt=""></a>
 			<div class="phone">
-				<p><i class="fa fa-phone" aria-hidden="true"></i>+38 (044) 249-72-22</p>
-				<a href="#">Закзазать звонок</a>
+				<?php
+				$args_home_page_phone = array(
+					'post_type' => 'home_page_phone', //slag
+					'posts_per_page' => 1,
+				);
+				$home_page_phone = new WP_Query($args_home_page_phone);
+
+				//loop
+				if ($home_page_phone->have_posts()) :
+					$result = object_to_array($home_page_phone);
+					while ($home_page_phone->have_posts()) :
+						$home_page_phone->the_post();
+						//display number and bottom text
+						echo "<p><i class='fa fa-phone' aria-hidden='true'></i>";
+						the_title();
+						echo "</p>";
+						echo "<a href='#'>";
+						echo strip_tags(get_the_content());
+						echo "</a>";
+					endwhile;
+				endif;
+				wp_reset_postdata(); // return global variables to state of main query ?>
 			</div>
 		</div>
 		<div class="menu">
-			<!--<ul>
-				<li><a href="index.html">ГЛАВНАЯ</a></li>
-				<li><a href="about.html">О ПРОЕКТЕ</a></li>
-				<li><a href="services.html">Услуги и цены</a></li>
-				<li><a href="contacts.html">Контакты</a></li>
-			</ul>-->
 			<?php wp_nav_menu(array('theme_location' => 'menu-1', 'container' => 'false')); ?>
 		</div>
 	</div>

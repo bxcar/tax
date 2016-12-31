@@ -2,8 +2,29 @@
 <main>
     <section class="head-block">
         <div class="wrap">
-            <h1>Бизнес — <br> в любой точке мира!</h1>
-            <a href="#">узнать как</a>
+            <?php
+            $args_home_page_title = array(
+                'post_type' => 'home_page_title', //slag
+                'posts_per_page' => 1,
+            );
+            $home_page_title = new WP_Query($args_home_page_title);
+
+            //loop
+            if ($home_page_title->have_posts()) :
+                $result = object_to_array($home_page_title);
+                while ($home_page_title->have_posts()) :
+                    $home_page_title->the_post();
+                    //display title and button text
+                        echo "<h1>";
+                        the_title();
+                        echo "</h1>";
+                        echo "<a href='#'>";
+                        the_content();
+                        echo "</a>";
+                endwhile;
+            endif;
+            wp_reset_postdata(); // return global variables to state of main query ?>
+
             <div class="icon-scroll"></div>
         </div>
     </section>
@@ -98,7 +119,7 @@
                 }
                 while ($special_offers->have_posts()) :
                     $special_offers->the_post();
-                    //display benefits
+                    //display list
                     if (!get_the_content()) {
                         echo "<div class='item'>";
                         echo "<div class='item-wrap'><p>";
@@ -157,7 +178,7 @@
                 if ($result_in_numbers->have_posts()) :
                     while ($result_in_numbers->have_posts()) :
                         $result_in_numbers->the_post();
-                        //display benefits
+                        //display list
                         if ((get_the_content() != 'Заголовок') && (get_the_title() != 'Боковой_текст')) {
                             if ($check_div % 2 == 0)
                                 echo "<div class='item'>";
@@ -208,7 +229,7 @@
                 if ($how_we_works->have_posts()) :
                     while ($how_we_works->have_posts()) :
                         $how_we_works->the_post();
-                        //display benefits
+                        //display list
                         if ((get_the_content() != 'Заголовок')) {
                             echo "<div class='item'>";
                             echo "<div>";
@@ -268,7 +289,7 @@
                     if ($flavor->have_posts()) :
                         while ($flavor->have_posts()) :
                             $flavor->the_post();
-                            //display benefits
+                            //display list
                             if (!get_the_content()) {
                                 echo "<p><span>";
                                 echo types_render_field("number_flv", array("style" => "FIELD_NAME : $ FIELD_VALUE"));
@@ -309,7 +330,7 @@
                     }
                     while ($_helpful_information->have_posts()) :
                         $_helpful_information->the_post();
-                        //display benefits
+                        //display list
                         if (!get_the_content()) {
                             echo "<div class='item'>";
                             echo "<a href='#'>";
@@ -364,7 +385,7 @@
                 }
                 while ($news_fields->have_posts()) :
                     $news_fields->the_post();
-                    //display benefits
+                    //display list
                     if (get_the_title() != 'Новости') {
                         echo "<div class='item'>";
                         echo "<div class='item-wrap'>";
