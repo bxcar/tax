@@ -1,0 +1,8 @@
+wordpress
+user - tax_user
+password - Y4fS$BfP5J!Zlo^05Z
+
+database
+root
+root
+tax_base

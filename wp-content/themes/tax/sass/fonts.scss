@@ -1,0 +1,10 @@
+@import "bourbon";
+//Roboto
+@include font-face("roboto", "../fonts/RobotoRegular/RobotoRegular", $file-formats: eot woff ttf);
+@include font-face("roboto", "../fonts/RobotoBold/RobotoBold", bold, $file-formats: eot woff ttf);
+
+//Georgia
+@include font-face("georgia", "../fonts/Georgia/georgia", $file-formats: ttf);
+@include font-face("georgia", "../fonts/Georgia/georgia-bold", bold, $file-formats: ttf);
+//Font Awesome
+@import "../fonts/font-awesome/css/font-awesome.min.css";

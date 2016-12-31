@@ -1,0 +1,85 @@
+@import "bourbon";
+@import "vars";
+
+*::-webkit-input-placeholder {
+	color: #666;
+	opacity: 1;
+}
+
+*:-moz-placeholder {
+	color: #666;
+	opacity: 1;
+}
+
+*::-moz-placeholder {
+	color: #666;
+	opacity: 1;
+}
+
+*:-ms-input-placeholder {
+	color: #666;
+	opacity: 1;
+}
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+	color: #666;
+	}
+
+body input:required:valid,
+body textarea:required:valid {
+	color: #666;
+}
+
+body {
+	min-width: 320px;
+	position: relative;
+	font-family: $default-font;
+	overflow-x: hidden;
+}
+
+
+html {
+	font-size: 16px!important;
+}
+
+//Mixin to calculate REM
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+	font-size: $size; //Fallback in px
+	font-size: calculateRem($size);
+}
+
+main {
+	.wrap {
+		max-width: 1150px;
+		margin: 0 auto;
+		padding: 110px 15px 50px;
+
+		.title {
+			color: #424242;
+			font-family: $georgia-font;
+			@include fontSize(45px);
+			font-weight: 400;
+			line-height: 48px;
+			padding-bottom: 70px;
+			position: relative;
+
+			&:after {
+				content: '';
+				display: block;
+				width: 52px;
+				height: 1px;
+				background-color: #3b3b3b;
+				position: absolute;
+				bottom: 30px;
+				left: 50%;
+				margin-left: -26px;
+			}
+		}
+	}
+}

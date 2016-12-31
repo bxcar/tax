@@ -1,0 +1,103 @@
+footer {
+  background-color: #424141;
+  padding: 130px 0;
+
+
+  .wrap {
+    max-width: 1150px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+  }
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 50px;
+
+  .item {
+    .title {
+      color: white;
+      font-family: $georgia-font;
+      @include fontSize(14px);
+      font-weight: 400;
+      line-height: 20px;
+      position: relative;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 33px;
+        height: 2px;
+        background-color: #3ca04f;
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+    }
+
+    li {
+      padding-bottom: 20px;
+
+      a {
+        color: #c2c1c1;
+        @include fontSize(14px);
+        font-weight: 400;
+
+        &:hover {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+
+    &.subscribe {
+      .title {
+        &:after {
+          background: transparent;
+        }
+      }
+      form {position: relative;}
+
+      input[type="email"] {
+        background: none;
+        border: 1px solid #6a6a6a;
+        line-height: 38px;
+        color: #c2c1c1;
+        font-size: 14px;
+        font-weight: 400;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 40px;
+        outline: none;
+
+        &::-webkit-input-placeholder {
+          color: #c2c1c1;
+        }
+      }
+
+      input[type="submit"] {
+        font-size: 0;
+        width: 36px;
+        height: 28px;
+        background: url(../img/submit-bg.png) no-repeat 50% 50%;
+        border: none;
+        border-left: 1px solid #6a6a6a;
+        position: absolute;
+        right: 1px;
+        top: 50%;
+        margin-top: -14px;
+
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  p, a {
+    color: #b5b4b4;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
