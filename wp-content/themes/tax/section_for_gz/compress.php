@@ -128,12 +128,19 @@ if (!file_exists($adir))
 	}
 
 //		prepare combined, minfied and combined, minified and gzipped css and js files
-file_compress('css_schedule.css',array('../style.css', '../header.min.css', '../css/main.min.css', '../css/fonts.min.css'));
+file_compress('css_schedule.css',array(
+	'../style.css',
+	'../header.min.css', 
+	'../css/main.min.css'));
 //file_compress('css_non_schedule.css',array('../CSS/menu.css','../CSS/ThreeColumnFixed.css','../CSS/sprite.css'));
 /*file_compress('css_schedule_ie7.css',array('../CSS/menuIE.css','../CSS/ThreeColumnFixed.css','../CSS/sprite.css','../CSS/iCal.css'));
 file_compress('css_non_schedule_ie7.css',array('../CSS/menuIE.css','../CSS/ThreeColumnFixed.css','../CSS/sprite.css'));
 file_compress('css_ie6.css',array('../CSS/menuIE6.css','../CSS/ThreeColumnFixedIE6.css','../CSS/sprite.css'));*/
-file_compress('js_schedule.js',array('../js/libs.min.js','http://massageinborispol.com.ua/tax/wp-includes/js/wp-emoji-release.min.js','../js/navigation.js','../js/common.js','http://massageinborispol.com.ua/tax/wp-includes/js/wp-embed.min.js'));
+file_compress('js_schedule.js',array('../js/libs.min.js',
+	'http://massageinborispol.com.ua/tax/wp-includes/js/wp-emoji-release.min.js',
+	'../js/navigation.js',
+	'../js/common.js',
+	'http://massageinborispol.com.ua/tax/wp-includes/js/wp-embed.min.js'));
 //file_compress('js_non_schedule.js',array('../JS/Findit.js','../JS/UlScroll.js','../ExternalConnect/External.js'));
 
 //		write new timestamp file compress_timestamp.php for php execution code

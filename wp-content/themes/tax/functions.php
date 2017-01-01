@@ -112,13 +112,13 @@ add_action( 'widgets_init', 'tax_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tax_scripts() {
-	wp_enqueue_style( 'tax-style', get_stylesheet_uri() );
-	wp_enqueue_style('header.min', get_template_directory_uri() . '/header.min.css');
-	wp_enqueue_style('main.min', get_template_directory_uri() . '/css/main.min.css');
+	//wp_enqueue_style( 'tax-style', get_stylesheet_uri() );
+//	wp_enqueue_style('header.min', get_template_directory_uri() . '/header.min.css');
+//	wp_enqueue_style('main.min', get_template_directory_uri() . '/css/main.min.css');
 	wp_enqueue_style('fonts.min', get_template_directory_uri() . '/css/fonts.min.css');// Loading fonts, if the site is located in a subfolder
 	 //loadLocalStorageCSS( "webfonts", "css/fonts.min.css?ver=1.0.0" ); // Loading fonts, if the site is at the root
 
-	wp_enqueue_script( 'tax-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	//wp_enqueue_script( 'tax-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'tax-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 

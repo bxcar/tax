@@ -114,8 +114,8 @@
 	  $gz = null;
 	}
 
-	//echo '<link rel="stylesheet" type="text/css" href="http://massageinborispol.com.ua/tax/wp-content/themes/tax/min/css_schedule_' . $compress_stamp . '.css' . $gz . '" />', PHP_EOL;
-	//echo '<script src="http://massageinborispol.com.ua/tax/wp-content/themes/tax/min/js_schedule_' . $compress_stamp . '.js' . $gz . '" />', PHP_EOL;
+	echo '<link rel="stylesheet" type="text/css" href="http://192.168.0.98/wp-content/themes/tax/min/css_schedule_' . $compress_stamp . '.css' . $gz . '" />', PHP_EOL;
+	echo '<script src="http://192.168.0.98/wp-content/themes/tax/min/js_schedule_' . $compress_stamp . '.js' . $gz . '" />', PHP_EOL;
 	 wp_head(); ?>
 </head>
 

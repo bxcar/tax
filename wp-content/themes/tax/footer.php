@@ -45,8 +45,8 @@
 <!-- Optimized loading JS Start -->
 <script>var scr = {
 		"scripts": [
-			{"src": "<?php bloginfo('template_url') ?>/js/libs.min.js", "async": false},
-			{"src": "<?php bloginfo('template_url') ?>/js/common.js", "async": false}
+			{"src": "<?php //bloginfo('template_url') ?>/js/libs.min.js", "async": false},
+			{"src": "<?php //bloginfo('template_url') ?>/js/common.js", "async": false}
 		]
 	};
 	!function (t, n, r) {
