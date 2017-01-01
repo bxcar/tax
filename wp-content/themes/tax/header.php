@@ -105,7 +105,18 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#000">
 	<!-- Custom Browsers Color End -->
 
-	<?php wp_head(); ?>
+	<?php
+	require_once("section_for_gz/compress_timestamp.php");
+
+	if (stripos($_SERVER['HTTP_ACCEPT_ENCODING'], 'GZIP') == false) {
+	  $gz = 'gz';
+	} else {
+	  $gz = null;
+	}
+
+	//echo '<link rel="stylesheet" type="text/css" href="http://massageinborispol.com.ua/tax/wp-content/themes/tax/min/css_schedule_' . $compress_stamp . '.css' . $gz . '" />', PHP_EOL;
+	//echo '<script src="http://massageinborispol.com.ua/tax/wp-content/themes/tax/min/js_schedule_' . $compress_stamp . '.js' . $gz . '" />', PHP_EOL;
+	 wp_head(); ?>
 </head>
 
 <body>

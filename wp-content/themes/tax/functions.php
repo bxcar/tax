@@ -7,6 +7,11 @@
  * @package tax
  */
 
+
+
+update_option( 'siteurl', 'http://192.168.0.98' );
+update_option( 'home', 'http://192.168.0.98' );
+
 if ( ! function_exists( 'tax_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -111,7 +116,7 @@ function tax_scripts() {
 	wp_enqueue_style('header.min', get_template_directory_uri() . '/header.min.css');
 	wp_enqueue_style('main.min', get_template_directory_uri() . '/css/main.min.css');
 	wp_enqueue_style('fonts.min', get_template_directory_uri() . '/css/fonts.min.css');// Loading fonts, if the site is located in a subfolder
-	// loadLocalStorageCSS( "webfonts", "css/fonts.min.css?ver=1.0.0" ); // Loading fonts, if the site is at the root
+	 //loadLocalStorageCSS( "webfonts", "css/fonts.min.css?ver=1.0.0" ); // Loading fonts, if the site is at the root
 
 	wp_enqueue_script( 'tax-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
